@@ -12,7 +12,6 @@
     "url": "https://github.com/antonioyee/store-c-js.git"
   },
   "devDependencies": {
-    "chai": "^3.2.0",
     "gulp": "^3.9.0",
     "gulp-mocha": "^2.1.3"
   }
