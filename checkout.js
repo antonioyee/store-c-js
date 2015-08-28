@@ -61,5 +61,38 @@ Checkout.prototype.scan = function (product) {
 	return this;
 };
 
+Checkout.prototype.total = function () {
+	var totalCart = 0;
+
+	this.shoppingCart.forEach(function(item, index) {
+
+		if ( item.count == 1 ) { // normal
+
+			totalCart += (item.count * item.price);
+
+		}else if( item.count == 2 ){ // 2 x 1
+
+			totalCart += item.price;
+
+		}else{ // More than 3 items, apply 2 x 1
+
+			if ( item.code == 'TSHIRT' ) {
+				totalCart += (item.count * 19);
+			}else{
+				var residue = item.count % 2;
+
+				if ( residue == 0 ) {
+					totalCart += ( (item.count / 2) * item.price);
+				}else{
+					var count = item.count - residue;
+					totalCart += ( ( (count / 2) + residue ) * item.price);
+				}
+			}
+		}
+
+	});
+
+	return totalCart;
+};
 
 module.exports = Checkout;
